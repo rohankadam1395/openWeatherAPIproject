@@ -10,6 +10,9 @@ export class AppComponent {
   title = 'open-weather';
 error:any;
 config:any;
+
+foreCastError:any;
+foreCast:any;
 constructor(private configService:ConfigService) {}
 
 showConfig(){
@@ -19,6 +22,16 @@ showConfig(){
     (data)=>this.config=data,
     error => this.error=error
     );
+}
+
+getForeCast(){
+  console.log("ForeCast Clicked");
+
+  this.configService.getForeCast()
+  .subscribe(
+    (data)=>this.foreCast=data,
+    error=>this.foreCastError=error
+  )
 }
 
 }
