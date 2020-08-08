@@ -1,19 +1,18 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Directive,Input } from '@angular/core';
 import * as d3 from 'd3';
-@Component({
-  selector: 'app-forecast-chart',
-  templateUrl: './forecast-chart.component.html',
-  styleUrls: ['./forecast-chart.component.css']
+
+@Directive({
+  selector: '[appChartDirective]'
 })
-export class ForecastChartComponent implements OnInit {
+export class ChartDirectiveDirective {
 
   constructor() { }
   @Input() getit:string;
   @Input() foreCast:[{}];
-width=500;
+width=600;  
 height=300;
 svg;
-padding=25;
+padding=55;
 dates=[];
 // scale=d3.scaleLinear().domain([0,7]).range([this.padding,this.width-this.padding]);
 scale;
@@ -26,8 +25,8 @@ yAxis;
 domain;
 
   ngOnInit() {
-    this.y=d3.max(this.foreCast["daily"],(d)=>parseInt(d['temp'].max));
-    this.miny=d3.min(this.foreCast["daily"],(d)=>parseInt(d['temp'].min));
+    this.y=d3.max(this.foreCast["daily"],(d)=>parseFloat(d['temp'].max));
+    this.miny=d3.min(this.foreCast["daily"],(d)=>parseFloat(d['temp'].min));
 
     this.yScale=d3.scaleLinear().domain([this.miny,this.y]).range([this.height-this.padding,this.padding]);
    this.yAxis= d3.axisLeft(this.yScale);

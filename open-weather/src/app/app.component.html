@@ -1,29 +1,58 @@
 <h1>{{title}}</h1>
-<button (click)="showConfig();">Click</button>
-<div *ngIf="config">
+<div class="main">
+
+<div>
+    <label>City: </label><input [(ngModel)]="city"/>
+    <label>Country: </label><input [(ngModel)]="country"/>
+    <label>Zip: </label><input [(ngModel)]="zip"/>
+    <label>Longitude: </label><input [(ngModel)]="long"/>
+    <label>Latitude: </label><input [(ngModel)]="lat"/>
+
+
+
+</div>
+
+<div class="buttons">
+  <button (click)="showConfig();">Current</button>
+  <button (click)="getForeCast();">Forecast</button>
+</div>
+
+<div class="content">
+
+
+<div *ngIf="config" class="currentInfo">
   <p>Location: {{config.name}}</p>
   <p>Description: {{config.weather[0].description}}</p>
-  <p>Current Temperature: {{config.main.temp}}</p>
-  <p>Max Temperature: {{config.main.temp_max}}</p>
-  <p>Min Temperature: {{config.main.temp_min}}</p>
+  <p>Current Temperature: {{config.main.temp+" \u2109"}}</p>
+  <p>Max Temperature: {{config.main.temp_max+" \u2109"}}</p>
+  <p>Min Temperature: {{config.main.temp_min+" \u2109"}}</p>
   
+<div><button class="showButton" (click)="showInfo();">{{infoBtnName}}</button></div>
+
+  <div *ngIf="moreInfo">
+    <p>Wind Speed: {{config.wind.speed}}</p>
+    <p>Humidity: {{config.main.humidity}}</p>
+    <p>Pressure: {{config.main.pressure}}</p>
+    <p>Sunrise Time: {{config.sys.sunrise}}</p>
+    <p>Sunrise Time: {{config.sys.sunrise}}</p>
   
-  <p>Wind Speed: {{config.wind.speed}}</p>
-  <p>Humidity: {{config.main.humidity}}</p>
-  <p>Pressure: {{config.main.pressure}}</p>
-  <p>Sunrise Time: {{config.sys.sunrise}}</p>
-  <p>Sunrise Time: {{config.sys.sunrise}}</p>
   
 </div>
+</div>
 
-<button (click)="getForeCast();">Forecast</button>
 <div *ngIf="foreCast">
   <p>TimeZone: {{foreCast.timezone}}</p>
-  <h1>{{foreCast}}</h1>
+  <!-- <h1>{{foreCast}}</h1> -->
+  <!-- <app-forecast-chart getit="helloo" [foreCast]="foreCast"></app-forecast-chart> -->
 
-  <app-forecast-chart getit="helloo" [foreCast]="foreCast"></app-forecast-chart>
+  <div id="chart" appChartDirective [foreCast]="foreCast"></div>
+
+
+</div>
 
 </div>
 
 
+
+</div>
 
