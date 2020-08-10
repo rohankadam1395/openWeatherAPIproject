@@ -35,7 +35,7 @@ showConfig(){
 
 getForeCast(){
   console.log("ForeCast Clicked");
-
+this.foreCast="";
   this.configService.getForeCast(this.lat,this.long)
   .subscribe(
     (data)=>this.foreCast=data,

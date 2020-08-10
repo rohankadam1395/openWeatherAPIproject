@@ -9,7 +9,7 @@ export class ChartDirectiveDirective {
   constructor() {
 
    }
-  @Input() getit:string;
+  // @Input() getit:string;
   @Input() foreCast:[{}];
 
 width=600;  
@@ -34,6 +34,8 @@ domain;
   ngOnChanges(){
     this.change();
   }
+
+  
 
 
 
